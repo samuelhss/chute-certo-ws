@@ -1,0 +1,23 @@
+<div data-ng-controller="CadastroInstrumentoController">
+	<div class="breadcrumb">
+		<h4>Cadastro de Instrumento</h4>
+	</div>
+	<form>
+		<div class="form-group">
+			<label for="nome">Nome</label><input type="text" class="form-control"
+				id="nome" data-ng-model="instrumento.nome" />
+		</div>
+		<div class="form-group">
+			<label for="nivelComplexidade">Nível de Complexidade</label>
+			<div class="btn-group" data-ng-model="instrumento.nivelComplexidade" data-bs-radio-group>
+				<label class="btn btn-default"><input type="radio"
+					class="btn btn-default" value="1"> Fácil</label> <label
+					class="btn btn-default"><input type="radio"
+					class="btn btn-default" value="2"> Médio</label> <label
+					class="btn btn-default"><input type="radio"
+					class="btn btn-default" value="3"> Difícil</label>
+			</div>
+		</div>
+		<button class="btn btn-primary" type="button" data-ng-click="save()">Salvar</button>
+	</form>
+</div>

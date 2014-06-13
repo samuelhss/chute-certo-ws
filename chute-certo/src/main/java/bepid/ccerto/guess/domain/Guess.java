@@ -9,10 +9,22 @@ import bepid.ccerto.user.domain.User;
 @Table(name = "GUESS")
 public class Guess {
 	
+	private Long id;
 	private User user;
 	private Match match;
 	private String scoreHome;
 	private String scoreAway;
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "SEQ_GUESS")
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	@ManyToOne(targetEntity = User.class)
 	@JoinColumn(name = "SEQ_USER")

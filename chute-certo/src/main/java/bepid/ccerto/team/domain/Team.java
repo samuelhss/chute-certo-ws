@@ -11,6 +11,8 @@ public class Team {
 	private String name;
 	
 	@Id
+	@GeneratedValue
+	@Column(name = "SEQ_TEAM")
 	public Long getId() {
 		return id;
 	}

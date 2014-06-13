@@ -1,0 +1,64 @@
+<div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('nome') && (isSubmitted() || isBlured('nome')), 'has-success' : !isInvalid('nome') && isBlured('nome')}; ">
+	<label class="control-label required" for="nome">Nome</label>
+	<input data-ng-blur type="text" class="form-control" id="nome" name="nome" data-ng-model="pessoa.nome" placeholder="Informe um nome." required data-ng-minlength="3" size="20"/>
+	<span data-ng-show="isInvalid('nome') && (isSubmitted() || isBlured('nome'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<span data-ng-show="!isInvalid('nome') && isBlured('nome')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('nome')) && pessoaForm.nome.$error.required">É necessário informar um nome.</p>
+	<p class="help-block" data-ng-show="pessoaForm.nome.$error.minlength && (isSubmitted() || isBlured('nome'))">O nome deve conter no mínimo 3 caracteres.</p>
+</div>
+<div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('cpf') && (isSubmitted() || isBlured('cpf')), 'has-success' : !isInvalid('cpf') && isBlured('cpf')}">
+	<label class="control-label required" for="cpf">CPF</label>
+	<input data-ng-blur type="text" class="form-control" id="cpf" name="cpf" data-ng-model="pessoa.cpf" data-ui-mask="{{'999.999.999-99'}}" required/>
+	<span data-ng-show="!isInvalid('cpf') && isBlured('cpf')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<span data-ng-show="isInvalid('cpf') && (isSubmitted() || isBlured('cpf'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('cpf')) && pessoaForm.cpf.$error.required">É necessário informar um CPF.</p>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('cpf')) && isInvalid('cpf') && isDirty('cpf')">Informe um CPF válido.</p>
+</div>
+<div class="form-group has-feedback">
+	<label class="control-label required" for="dataNascimento">Data de Nascimento</label>
+	<input data-ng-blur type="text" class="form-control" id="dataNascimento" name="dataNascimento" data-ng-model="pessoa.dataNascimento" 
+		data-bs-datepicker data-animation="am-fade-and-slide-top" data-date-format="dd/MM/yyyy" data-autoclose="true" required/>
+	<span data-ng-show="!isInvalid('dataNascimento') isBlured('dataNascimento')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<span data-ng-show="isInvalid('dataNascimento') && (isSubmitted() || isBlured('dataNascimento'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('dataNascimento')) && pessoaForm.dataNascimento.$error.required">É necessário informar uma data de nascimento.</p>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('dataNascimento')) && isInvalid('dataNascimento') && isDirty('dataNascimento')">Informe uma data válida.</p>
+</div>
+<div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('telefone') && (isSubmitted() || isBlured('telefone')), 'has-success' : !isInvalid('telefone')}">
+	<label class="control-label required" for="telefone">Telefone</label>
+	<input data-ng-blur type="text" class="form-control" id="telefone" name="telefone" data-ng-model="pessoa.telefone" data-ui-mask="{{'(99) 9999-9999'}}" required/>
+	<span data-ng-show="isInvalid('telefone') && (isSubmitted() || isBlured('telefone'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<span data-ng-show="!isInvalid('telefone') && telefoneIsFilled()" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('telefone')) && pessoaForm.telefone.$error.required">É necessário informar um telefone.</p>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('telefone')) && isInvalid('telefone') && isDirty('telefone')">Informe um telefone válido.</p>
+</div>
+<div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('email') && (isSubmitted() || isBlured('email')),'has-success' : !isInvalid('email')}">
+	<label class="control-label required" for="email">Email</label>
+	<input data-ng-blur type="email" class="form-control" id="email" name="email" data-ng-model="pessoa.email" placeholder="email@provedor.com" required/>
+	<span data-ng-show="isInvalid('email') && (isSubmitted() || isBlured('email'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<span data-ng-show="!isInvalid('email')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('email')) && pessoaForm.email.$error.required">É necessário informar um email.</p>
+	<p class="help-block" data-ng-show="(isSubmitted() || isBlured('email')) && pessoaForm.email.$error.email">O email não está em um formato válido.</p>
+</div>
+<div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('endereco') && (isSubmitted() || isBlured('endereco')), 'has-success' : !isInvalid('endereco')}">
+	<label class="control-label required" for="endereco">Endereço</label>
+	<input data-ng-blur data-ng-blur type="text" class="form-control" id="endereco" name="endereco" data-ng-model="pessoa.endereco" placeholder="Informe um endereco." size="50" data-ng-minlength="8" required/>
+	<span data-ng-show="isInvalid('endereco') && (isSubmitted() || isBlured('endereco'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+	<span data-ng-show="!isInvalid('endereco')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<p class="help-block" data-ng-show="pessoaForm.endereco.$error.required && (isSubmitted() || isBlured('endereco'))">É necessário informar um endereco.</p>
+	<p class="help-block" data-ng-show="pessoaForm.endereco.$error.minlength && (isSubmitted() || isBlured('endereco'))">O endereco deve possuir no mínimo 8 caracteres.</p>
+</div>
+<div class="form-group has-feedback" data-ng-class="{'has-error' : isInvalid('cep') && isBlured('cep'), 'has-success' : !isInvalid('cep') && isDirty('cep') && cepIsFilled()}">
+	<label class="control-label" for="cep">CEP</label>
+	<input data-ng-blur type="text" class="form-control" id="cep" name="cep" data-ng-model="pessoa.cep" data-ui-mask="{{'99.999-999'}}"/>
+	<span data-ng-show="!isInvalid('cep') && isDirty('cep') && cepIsFilled()" class="glyphicon glyphicon-ok form-control-feedback"></span>
+	<p class="help-block" data-ng-show="isInvalid('cep') && isDirty('cep') && isBlured('cep')">O CEP informado não é válido.</p>
+</div>
+<div class="form-group">
+	<label class="control-label required" for="sexo">Sexo</label>
+	<div class="input-group">
+		<div class="btn-group" data-ng-model="pessoa.sexo" data-bs-radio-group>
+			<label class="btn btn-default"><input type="radio" class="btn btn-default" value="F"> Feminino</label>
+			<label class="btn btn-default"><input type="radio" class="btn btn-default" value="M"> Masculino</label>
+		</div>
+	</div>			
+</div>

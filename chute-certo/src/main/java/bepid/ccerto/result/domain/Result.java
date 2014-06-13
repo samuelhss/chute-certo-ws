@@ -8,9 +8,21 @@ import bepid.ccerto.match.domain.Match;
 @Table(name = "RESULT")
 public class Result {
 	
+	private Long id;
 	private Match match;
 	private String scoreHome;
 	private String scoreAway;
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "SEQ_RESULT")
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	@ManyToOne(targetEntity = Match.class)
 	@JoinColumn(name = "SEQ_MATCH")

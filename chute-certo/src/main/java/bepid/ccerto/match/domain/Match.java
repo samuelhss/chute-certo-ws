@@ -13,6 +13,7 @@ public class Match {
 	private Team awayTeam;
 	
 	@Id
+	@GeneratedValue
 	@Column(name = "SEQ_MATCH")
 	public Long getId() {
 		return id;

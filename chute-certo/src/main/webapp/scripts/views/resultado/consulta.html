@@ -1,0 +1,33 @@
+<div>
+    <div class="breadcrumb">
+        <h4>Consulta de Disciplina</h4>
+    </div>
+    <div id="searchFields">
+        <form name="pesquisa" id="pesquisa">
+            <div class="form-group" style="display: inline; margin-right: 15px;">
+                <label for="descricao">Descrição</label><input style="width: auto;" type="text" class="form-control" id="descricao" data-ng-model="pesquisa.descricao" />
+            </div>
+            <div class="form-group" style="display: inline; margin-right: 15px;">
+	            <label for="instrumento">Instrumento </label>
+	            <div class="input-group" style="width:40%;">
+	                <ui-select data-ng-model="instrumento.selected">
+	                  <ui-select-match placeholder="Selecione ou procure um instrumento na lista...">{{$select.selected.nome}}</ui-select-match>
+	                  <ui-select-choices repeat="instrumento in instrumentos | filter: $select.search">
+	                    <span data-ng-bind-html="instrumento.nome | highlight: $select.search"></span>
+	                  </ui-select-choices>
+	                </ui-select>
+	                <span class="input-group-btn">
+	                  <button data-ng-click="instrumento.selected = undefined" class="btn btn-default">
+	                    <span class="glyphicon glyphicon-trash"></span>
+	                  </button>
+	                </span>
+	            </div>
+        </div>
+            <div class="form-group" style="display: inline; margin-right: 15px;">
+                <label></label>
+                <button class="btn btn-primary" type="button" data-ng-click="searchDisciplinas()">Pesquisar</button>
+            </div>
+        </form>
+    </div>
+    <div id="searchResults" data-ng-show="instrumentos != null" data-ng-grid="gridOptions"></div>
+</div>

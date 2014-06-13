@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Escola de Música IMAA</title>
+<link rel='icon' type='image/x-icon' href='images/favicon.ico' />
+<link href="styles/reset.css" rel="stylesheet" />
+<link href="scripts/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="scripts/libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="styles/angular/motion/angular-motion.min.css" rel="stylesheet" />
+<link href="styles/project_style.css" rel="stylesheet" />
+<link href="scripts/libs/angular/angular-ui/ui-ng-grid/ng-grid.css" rel="stylesheet" />
+<link href="scripts/libs/angular/angular-ui/ui-select/select.css" rel="stylesheet" />
+</head>
+<body data-ng-controller="PlataformaController">
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h2>Chute Certo Admin</h2>
+				<nav class="navbar navbar-default navbar-inverse" data-role="navigation" data-bs-navbar>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Início</a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="dropdown" data-match-route="/usuario/*" data-active-class="active">
+								<a href="" data-animation="am-fade-and-slide-top" data-bs-dropdown data-template="scripts/views/dropdown-templates/usuario-dropdown.html">
+									Usuario<strong class="caret"></strong>
+								</a>
+							</li>
+							<li class="dropdown" data-match-route="/time/*" data-active-class="active">
+                                <a href="" data-animation="am-fade-and-slide-top" data-bs-dropdown data-template="scripts/views/dropdown-templates/time-dropdown.html">
+                                    Time<strong class="caret"></strong>
+                                </a>
+                            </li>
+                            <li class="dropdown" data-match-route="/partida/*" data-active-class="active">
+                                <a href="" data-animation="am-fade-and-slide-top" data-bs-dropdown data-template="scripts/views/dropdown-templates/partida-dropdown.html">
+                                    Partida<strong class="caret"></strong>
+                                </a>
+                            </li>
+                            <li class="dropdown" data-match-route="/resultado/*" data-active-class="active">
+                                <a href="" data-animation="am-fade-and-slide-top" data-bs-dropdown data-template="scripts/views/dropdown-templates/resultado-dropdown.html">
+                                    Resultado<strong class="caret"></strong>
+                                </a>
+                            </li>
+							<!-- <li class="dropdown" data-match-route="/palpite/*" data-active-class="active">
+								<a href="" data-animation="am-fade-and-slide-top" data-bs-dropdown data-template="scripts/views/dropdown-templates/turma-dropdown.html">
+									Palpite<strong class="caret"></strong>
+								</a>
+							</li> -->
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+						</ul>
+					</div>
+
+				</nav>
+		
+				<!-- 
+				<div data-ng-show="currentPage != '#/index'">
+					<ul class="breadcrumb">
+						<li><a href="#">Home</a> <span class="divider"></span></li>
+						<li><a href="#">Library</a> <span class="divider"></span></li>
+						<li class="active">Data</li>
+					</ul>
+				</div>
+				<div class="content">	
+					<div data-ng-view class="slide-pop"></div> 
+				<div> 
+				-->
+				<div>
+					<div data-ng-view></div>
+				</div>
+			</div>
+		</div>
+		<div class="flip">
+			<span></span>
+		</div>
+	</div>
+	<script src="scripts/libs/require/require.js" data-main="scripts/configs/main.js" charset="utf-8"></script>
+</body>
+</html>
