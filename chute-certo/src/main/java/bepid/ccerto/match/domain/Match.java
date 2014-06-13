@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import bepid.ccerto.team.domain.Team;
 
+@Entity
+@Table(name = "MATCH")
 public class Match {
 	
 	private Long id;
