@@ -13,6 +13,7 @@ public class User {
 	private String email;
 	private Gender gender;
 	private String photo;
+	private Long points;
 	
 	@Id
 	@GeneratedValue
@@ -60,5 +61,14 @@ public class User {
 	
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	
+	@Column(name = "POINTS")
+	public Long getPoints() {
+		return points;
+	}
+	
+	public void setPoints(Long points) {
+		this.points = points;
 	}
 }

@@ -12,7 +12,7 @@ public class UserDto {
 	
 	UserDto() {}
 	
-	UserDto(User user) {
+	public UserDto(User user) {
 		this.nickname = user.getNickname();
 		this.email = user.getEmail();
 		this.gender = user.getGender().getId();

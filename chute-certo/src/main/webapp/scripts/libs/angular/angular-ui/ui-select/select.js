@@ -287,7 +287,7 @@ angular.module('ui.select', [])
     restrict: 'EA',
     templateUrl: function(tElement, tAttrs) {
       var theme = tAttrs.theme || uiSelectConfig.theme;
-      return '/escola-imaa/scripts/libs/angular/angular-ui/ui-select/' + theme + '/select.tpl.html';
+      return '/chute-certo/scripts/libs/angular/angular-ui/ui-select/' + theme + '/select.tpl.html';
     },
     replace: true,
     transclude: true,
@@ -383,7 +383,7 @@ angular.module('ui.select', [])
     templateUrl: function(tElement) {
       // Gets theme attribute from parent (ui-select)
       var theme = tElement.parent().attr('theme') || uiSelectConfig.theme;
-      return '/escola-imaa/scripts/libs/angular/angular-ui/ui-select/' + theme + '/choices.tpl.html';
+      return '/chute-certo/scripts/libs/angular/angular-ui/ui-select/' + theme + '/choices.tpl.html';
     },
 
     compile: function(tElement, tAttrs) {
@@ -425,7 +425,7 @@ angular.module('ui.select', [])
     templateUrl: function(tElement) {
       // Gets theme attribute from parent (ui-select)
       var theme = tElement.parent().attr('theme') || uiSelectConfig.theme;
-      return '/escola-imaa/scripts/libs/angular/angular-ui/ui-select/' + theme + '/match.tpl.html';
+      return '/chute-certo/scripts/libs/angular/angular-ui/ui-select/' + theme + '/match.tpl.html';
     },
     link: function(scope, element, attrs, $select) {
       attrs.$observe('placeholder', function(placeholder) {

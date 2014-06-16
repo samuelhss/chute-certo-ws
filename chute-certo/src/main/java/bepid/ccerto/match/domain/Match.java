@@ -1,6 +1,14 @@
 package bepid.ccerto.match.domain;
 
-import javax.persistence.*;
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import bepid.ccerto.team.domain.Team;
 
@@ -11,6 +19,7 @@ public class Match {
 	private Long id;
 	private Team homeTeam;
 	private Team awayTeam;
+	private Calendar date;
 	
 	@Id
 	@GeneratedValue
@@ -41,5 +50,14 @@ public class Match {
 	
 	public void setAwayTeam(Team awayTeam) {
 		this.awayTeam = awayTeam;
+	}
+	
+	@Column(name = "DATE")
+	public Calendar getDate() {
+		return date;
+	}
+	
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
 }

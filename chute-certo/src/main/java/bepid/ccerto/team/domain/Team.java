@@ -30,6 +30,7 @@ public class Team {
 		this.sigla = sigla;
 	}
 	
+	@Column(name = "DSC_TEAM")
 	public String getName() {
 		return name;
 	}

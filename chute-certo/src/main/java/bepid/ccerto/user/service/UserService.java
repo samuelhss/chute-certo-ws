@@ -20,9 +20,9 @@ public class UserService {
 	private static final Logger logger = Logger.getLogger(UserService.class);
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public void save(@RequestBody UserDto dto) {
-		userRepository.save(dto.convertToEntity());
+	public UserDto save(@RequestBody UserDto dto) {
 		logger.info("Requisicao recebida: " + dto.nickname);
+		return new UserDto(userRepository.save(dto.convertToEntity()));
 	}
 	
 }

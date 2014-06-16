@@ -1,41 +1,35 @@
 define(['./_module'], function (services) {
 	'use strict';
 	
-    services.factory('ProfessorService', ['$http',function ($http) {
-    	return {
-    		init: function() { 
-    			return {
-	    			nivelExperiencia:''
-    			};
-    		},
-    		
+    services.factory('TimeService', ['$http',function ($http) {
+    	return {    		
     		findById: function(id) {
-    			return $http.get('/escola-imaa/api/professor/get/'+id).success(function(data, status) {
-    				console.log("Retornando professor '" + nome + "'.");
+    			return $http.get('/chute-certo/api/professor/get/'+id).success(function(data, status) {
+    				console.log("Retornando time '" + data.name + "'.");
     			});
     		},
-    		findByName: function(nome) {
-    			return $http.get('/escola-imaa/api/professor/search?nome='+nome).success(function(data, status) {
-    				console.log("Retornando professores que contenham '" + nome + "' no nome");
+    		findByName: function(name) {
+    			return $http.get('/chute-certo/api/professor/search?name='+name).success(function(data, status) {
+    				console.log("Retornando times que contenham '" + name + "' no nome");
     			});
     		},
     		findByDto: function(pesquisaDto) {
-    			return $http.post('/escola-imaa/api/professor/advancedSearch', pesquisaDto).success(function(data, status) {
-    				console.log("Retornando professores que contenham '" + nome + "' no nome");
+    			return $http.post('/chute-certo/api/professor/advancedSearch', pesquisaDto).success(function(data, status) {
+    				console.log("Pesquisa de times efetuada.");
     			});
     		},
     		findAll: function() {
-    			return $http.get('/escola-imaa/api/professor/list').success(function(data, status, headers, config) {
-    				console.log("Lista de professores carregada com sucesso.");
+    			return $http.get('/chute-certo/api/team/list').success(function(data, status, headers, config) {
+    				console.log("Lista de times carregada.");
     			});
     		},
     		
-    		save: function(professor) {
-    			return $http.post('/escola-imaa/api/professor/save', professor);	
+    		save: function(team) {
+    			return $http.post('/chute-certo/api/team/save', team);	
     		},
-    		remove: function(professor) {
-    			return $http.get('/escola-imaa/api/professor/remove/'+professor.id).success(function(data) {
-    				console.log("Professor '" + professor.nome + "' removido com sucesso. ID: " + professor.id);
+    		remove: function(team) {
+    			return $http.get('/chute-certo/api/team/remove/'+team.id).success(function(data) {
+    				console.log("Time '" + team.sigla + "' removido.");
     			});
     		},
     	};

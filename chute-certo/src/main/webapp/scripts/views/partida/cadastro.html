@@ -1,23 +1,47 @@
-<div data-ng-controller="CadastroInstrumentoController">
+<div>
 	<div class="breadcrumb">
-		<h4>Cadastro de Instrumento</h4>
+		<h4>Cadastro de Partida</h4>
 	</div>
 	<form>
 		<div class="form-group">
-			<label for="nome">Nome</label><input type="text" class="form-control"
-				id="nome" data-ng-model="instrumento.nome" />
+			<label for="nome">Casa</label>
+			<div class="input-group">
+	            <ui-select ng-model="match.homeTeam">
+	              <ui-select-match placeholder="Selecione ou procure um time na lista...">{{$select.selected.name}}</ui-select-match>
+	              <ui-select-choices repeat="team in teams | filter: $select.search">
+	                <span data-ng-bind-html="team.name | highlight: $select.search"></span>
+	              </ui-select-choices>
+	            </ui-select>
+	            <span class="input-group-btn">
+	              <button data-ng-click="match.homeTeam = undefined" class="btn btn-default">
+	                <span class="glyphicon glyphicon-trash"></span>
+	              </button>
+	            </span>
+          	</div>
 		</div>
 		<div class="form-group">
-			<label for="nivelComplexidade">Nível de Complexidade</label>
-			<div class="btn-group" data-ng-model="instrumento.nivelComplexidade" data-bs-radio-group>
-				<label class="btn btn-default"><input type="radio"
-					class="btn btn-default" value="1"> Fácil</label> <label
-					class="btn btn-default"><input type="radio"
-					class="btn btn-default" value="2"> Médio</label> <label
-					class="btn btn-default"><input type="radio"
-					class="btn btn-default" value="3"> Difícil</label>
-			</div>
+			<label for="nome">Fora</label>
+			<div class="input-group">
+	            <ui-select ng-model="match.awayTeam">
+	              <ui-select-match placeholder="Selecione ou procure um time na lista...">{{$select.selected.name}}</ui-select-match>
+	              <ui-select-choices repeat="team in teams | filter: $select.search">
+	                <span data-ng-bind-html="team.name | highlight: $select.search"></span>
+	              </ui-select-choices>
+	            </ui-select>
+	            <span class="input-group-btn">
+	              <button data-ng-click="match.awayTeam = undefined" class="btn btn-default">
+	                <span class="glyphicon glyphicon-trash"></span>
+	              </button>
+	            </span>
+          	</div>
 		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="dataNascimento">Data</label>
+			<input data-ng-blur type="text" class="form-control" id="matchDate" name="matchDate" data-ng-model="match.date" 
+				data-bs-datepicker data-animation="am-fade-and-slide-top" data-date-format="dd/MM/yyyy" data-autoclose="true"/>
+		</div>
+		
 		<button class="btn btn-primary" type="button" data-ng-click="save()">Salvar</button>
 	</form>
 </div>
