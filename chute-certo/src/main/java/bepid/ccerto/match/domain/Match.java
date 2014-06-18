@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import bepid.ccerto.team.domain.Team;
 
 @Entity
-@Table(name = "MATCH")
+@Table(name = "SOCCER_MATCH")
 public class Match {
 	
 	private Long id;

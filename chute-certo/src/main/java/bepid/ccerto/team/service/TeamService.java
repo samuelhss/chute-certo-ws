@@ -32,7 +32,6 @@ public class TeamService {
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public List<TeamDto> list() {
-		
 		List<Team> lista = teamRepository.findAll();
 		List<TeamDto> listaDto = new ArrayList<TeamDto>();
 		

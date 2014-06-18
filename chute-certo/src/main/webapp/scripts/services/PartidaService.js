@@ -9,15 +9,15 @@ define(['./_module'], function (services) {
     			});
     		},
     		findAll: function() {
-    			return $http.get('/escola-imaa/api/match/list').success(function(data, status, headers, config) {
+    			return $http.get('/chute-certo/api/match/list').success(function(data, status, headers, config) {
     				console.log("Retornando lista de partidas.");
     			});
     		},   		
     		save: function(partida) {
-    			return $http.post('/escola-imaa/api/match/save', partida);	
+    			return $http.post('/chute-certo/api/match/save', partida);	
     		},
     		remove: function(partida) {
-    			return $http['delete']('/escola-imaa/api/match/remove/'+partida.id).success(function(data) {
+    			return $http['delete']('/chute-certo/api/match/remove/'+partida.id).success(function(data) {
     				console.log("Partida '" + partida.id + "' removida.");
     			});
     		},
