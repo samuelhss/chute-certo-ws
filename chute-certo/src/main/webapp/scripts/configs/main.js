@@ -10,13 +10,13 @@ require.config({
          'ui.select':'../libs/angular/angular-ui/ui-select/select',
          'domReady': '../libs/require/domready/domready',
          'jquery': '../libs/jquery/jquery',
-         //'jquery.ui': '../libs/jquery/jquery-ui/jquery-ui',
          'angular.animate': '../libs/angular/animate/angular-animate',
          'angular.sanitize': '../libs/angular/sanitize/angular-sanitize.min',
          'angular.strap': '../libs/angular/angular-strap/angular-strap.min',
          'angular.strap.tpl': '../libs/angular/angular-strap/angular-strap.tpl.min',
          'ui.utils':'../libs/angular/angular-ui/ui-utils/ui-utils',
          'angular.validation':'../libs/angular/validation/angular-validation',
+         'angular.upload':'../libs/angular/upload/angular-file-upload',
          'utils': '../util/util'
      },
  
@@ -31,9 +31,6 @@ require.config({
          'angular.route': {
              deps: ['angular']
          },
-/*         'jquery.ui': {
-        	 deps: ['jquery']
-         },*/
          'ui.bootstrap' : {
         	 deps: ['angular']
          },
@@ -60,6 +57,9 @@ require.config({
          },
          'angular.sanitize' : {
         	 deps: ['angular']
+         },
+         'angular.upload': {
+             deps: ['angular']
          },
          'angular.strap' : {
         	 deps: ['angular.animate']

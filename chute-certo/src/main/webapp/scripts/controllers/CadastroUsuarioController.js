@@ -11,7 +11,6 @@ define(['./_module'], function (controllers) {
 		
 		$scope.aluno = {};
 		$scope.submitted = false;
-		$scope.messages = [];
 
 		if (angular.isDefined($routeParams.idAluno)) {
 			alunoService.findById($routeParams.idAluno).then(function(result) {

@@ -4,17 +4,17 @@ define(['./_module'], function (services) {
     services.factory('TimeService', ['$http',function ($http) {
     	return {    		
     		findById: function(id) {
-    			return $http.get('/chute-certo/api/professor/get/'+id).success(function(data, status) {
+    			return $http.get('/chute-certo/api/team/get/'+id).success(function(data, status) {
     				console.log("Retornando time '" + data.name + "'.");
     			});
     		},
     		findByName: function(name) {
-    			return $http.get('/chute-certo/api/professor/search?name='+name).success(function(data, status) {
+    			return $http.get('/chute-certo/api/team/search?name='+name).success(function(data, status) {
     				console.log("Retornando times que contenham '" + name + "' no nome");
     			});
     		},
     		findByDto: function(pesquisaDto) {
-    			return $http.post('/chute-certo/api/professor/advancedSearch', pesquisaDto).success(function(data, status) {
+    			return $http.post('/chute-certo/api/team/advancedSearch', pesquisaDto).success(function(data, status) {
     				console.log("Pesquisa de times efetuada.");
     			});
     		},

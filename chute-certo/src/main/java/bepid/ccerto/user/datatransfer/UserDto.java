@@ -9,6 +9,7 @@ public class UserDto {
 	public String nickname;
 	public String gender;
 	public String email;
+	public Boolean facebookConnected;
 	
 	UserDto() {}
 	

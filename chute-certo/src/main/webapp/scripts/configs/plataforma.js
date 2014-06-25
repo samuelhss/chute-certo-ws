@@ -7,6 +7,7 @@ define([
     'ng.grid.flexible.height',
     'ng.grid.layout',
     'angular.animate',
+    'angular.upload',
     'angular.sanitize',
     'angular.strap',
     'angular.strap.tpl',
@@ -29,7 +30,8 @@ define([
         'mgcrea.ngStrap',
         'ngGrid',
         'ui.select',
-        //'ui.utils',
+        'angularFileUpload',
+        'ui.utils',
         'ui.mask',
         'validation'
     ]);
