@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bepid.ccerto.user.datatransfer.UserDto;
 import bepid.ccerto.user.repository.UserRepository;
@@ -19,6 +20,7 @@ public class UserService {
 	
 	private static final Logger logger = Logger.getLogger(UserService.class);
 	
+	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public UserDto save(@RequestBody UserDto dto) {
 		logger.info("Requisicao recebida: " + dto.nickname);

@@ -14,6 +14,7 @@ public class User {
 	private Gender gender;
 	private String photo;
 	private Long points;
+	private Boolean isFacebookConnected;
 	
 	@Id
 	@GeneratedValue

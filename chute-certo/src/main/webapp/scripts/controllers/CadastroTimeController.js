@@ -8,7 +8,8 @@ define(['./_module'], function (controllers) {
 			 '$alert',
 			 '$routeParams',
 			 '$upload',
-			 function ($scope, timeService, $sce, $alert, $routeParams, $upload) {
+			 '$timeout',
+			 function ($scope, timeService, $sce, $alert, $routeParams, $upload, $timeout) {
 		
 		$scope.team = {};
 		
@@ -58,12 +59,12 @@ define(['./_module'], function (controllers) {
 						mensagem = "Time '" + data.name + "' inserido com sucesso. ID: " + data.id;
 				}
 				$alert({title: '', content: $sce.trustAsHtml('<p>' + mensagem + '</p>'), placement: 'top', type: 'success', show: true});
+				$scope.start(data.sigla);
 			}).error(function(data, status) {
 				console.log("Ocorreu erro ao efetuar a operacao com o time.");
 				$alert({title: 'Erro', content: $sce.trustAsHtml('<p>Ocorreu erro ao efetuar a operacao.</p>'), placement: 'top', type: 'danger', show: true});
 			});
-    		$scope.professor = professorService.init();
-    		$scope.pessoa = pessoaService.init();
+    		$scope.team = {};
         };
         
         $scope.fileReaderSupported = window.FileReader != null;
@@ -104,52 +105,32 @@ define(['./_module'], function (controllers) {
     					};
     				}(fileReader, i);
     			}
-    			$scope.progress[i] = -1;
-    			if ($scope.uploadRightAway) {
-    				$scope.start(i);
-    			}
+    			$scope.progress = -1;
     		}
     	};
 
-    	$scope.start = function(index) {
-    		$scope.progress[index] = 0;
+    	$scope.start = function(fileName) {
     		$scope.errorMsg = null;
-    		if ($scope.howToSend == 1) {
-    			$scope.upload[index] = $upload.upload({
-    				url : 'upload',
+    		if (angular.isDefined($scope.selectedFiles[0])) {
+    			$scope.upload = $upload.upload({
+    				url : '/chute-certo/api/team/flag/upload?name='+fileName,
     				method: $scope.httpMethod,
-    				headers: {'my-header': 'my-header-value'},
+    				headers: {'enctype': 'multipart/form-data'},
     				data : {
     					myModel : $scope.myModel
     				},
-    				file: $scope.selectedFiles[index],
-    				fileFormDataName: 'myFile'
+    				file: $scope.selectedFiles[0],
+    				fileFormDataName: 'file'
     			}).then(function(response) {
     				$scope.uploadResult.push(response.data);
     			}, function(response) {
     				if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
     			}, function(evt) {
-    				$scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+    				$scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
     			}).xhr(function(xhr){
     				xhr.upload.addEventListener('abort', function() {console.log('abort complete');}, false);
     			});
-    			} else {
-    				var fileReader = new FileReader();
-    		        fileReader.onload = function(e) {
-    		        	$scope.upload[index] = $upload.http({
-    		        		url: 'upload',
-    		        		headers: {'Content-Type': $scope.selectedFiles[index].type},
-    		        		data: e.target.result
-    		        	}).then(function(response) {
-    		        		$scope.uploadResult.push(response.data);
-    		        	}, function(response) {
-    		        		if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-    		        	}, function(evt) {
-    		        		$scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-    		        	});
-    		        };
-    		        fileReader.readAsArrayBuffer($scope.selectedFiles[index]);
-    			}
+    		}
     	};
     }]);
 });
