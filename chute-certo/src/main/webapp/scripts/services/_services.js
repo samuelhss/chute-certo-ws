@@ -2,5 +2,6 @@ define([
     './UsuarioService',
     './PartidaService',
     './ResultadoService',
-    './TimeService'
+    './TimeService',
+    './CampeonatoService'
 ], function () {});

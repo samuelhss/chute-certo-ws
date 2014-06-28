@@ -1,0 +1,17 @@
+<div>
+    <div class="breadcrumb">
+		<h4>Cadastro de Campeonato</h4>
+	</div>
+    <form name="teamForm">
+        <div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('descricao') && (isSubmitted() || isBlured('descricao')), 'has-success' : !isInvalid('descricao') && isBlured('descricao')}; ">
+			<label class="control-label required" for="descricao">Descricao</label>
+			<input data-ng-blur type="text" class="form-control" id="descricao" name="descricao" data-ng-model="championship.description" placeholder="Informe uma descrição." required data-ng-minlength="3" size="20"/>
+			<span data-ng-show="isInvalid('descricao') && (isSubmitted() || isBlured('descricao'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+			<span data-ng-show="!isInvalid('descricao') && isBlured('descricao')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+			<p class="help-block" data-ng-show="(isSubmitted() || isBlured('descricao')) && championshipForm.nome.$error.required">É necessário informar uma descrição.</p>
+			<p class="help-block" data-ng-show="championshipForm.nome.$error.minlength && (isSubmitted() || isBlured('descricao'))">A descrição deve conter no mínimo 3 caracteres.</p>
+		</div>
+
+        <button class="btn btn-primary" type="button" data-ng-click="save()">Salvar</button>
+    </form>
+</div>

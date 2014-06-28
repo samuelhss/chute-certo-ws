@@ -8,5 +8,6 @@ define([
     './CadastroPartidaController',
     './ConsultaPartidaController',
     './CadastroResultadoController',
-    './ConsultaResultadoController'
+    './ConsultaResultadoController',
+    './ConsultaCampeonatoController'
 ], function () {});

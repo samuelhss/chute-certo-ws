@@ -60,6 +60,18 @@ define(['./plataforma'], function (plataforma) {
     		templateUrl: 'scripts/views/resultado/cadastro.html',
     		controller: 'CadastroResultadoController'
     	});
+    	$routeProvider.when('/resultado/cadastro', {
+    		templateUrl: 'scripts/views/resultado/cadastro.html',
+    		controller: 'CadastroResultadoController'
+    	});
+    	$routeProvider.when('/campeonato/consulta', {
+            templateUrl: 'scripts/views/campeonato/consulta.html',
+            controller: 'ConsultaCampeonatoController'
+        });
+    	$routeProvider.when('/campeonato/:idCampeonato', {
+    		templateUrl: 'scripts/views/campeonato/cadastro.html',
+    		controller: 'CadastroCampeonatoController'
+    	});
     	
         $routeProvider.otherwise({
             redirectTo: '/index'

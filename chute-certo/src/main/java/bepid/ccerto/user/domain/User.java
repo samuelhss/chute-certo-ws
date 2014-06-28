@@ -3,6 +3,7 @@ package bepid.ccerto.user.domain;
 import javax.persistence.*;
 
 import bepid.ccerto.util.converter.FlagGenderConverter;
+import bepid.ccerto.util.converter.FlagSimNaoConverter;
 
 @Entity
 @Table(name = "USER")
@@ -12,9 +13,7 @@ public class User {
 	private String nickname;
 	private String email;
 	private Gender gender;
-	private String photo;
-	private Long points;
-	private Boolean isFacebookConnected;
+	private Boolean facebookConnected;
 	
 	@Id
 	@GeneratedValue
@@ -55,21 +54,13 @@ public class User {
 		this.gender = gender;
 	}
 	
-	@Column(name = "ENCODED_PHOTO")
-	public String getPhoto() {
-		return photo;
+	@Column(name = "FLG_FACEBOOK")
+	@Convert(converter = FlagSimNaoConverter.class)
+	public Boolean isFacebookConnected() {
+		return facebookConnected;
 	}
 	
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-	
-	@Column(name = "POINTS")
-	public Long getPoints() {
-		return points;
-	}
-	
-	public void setPoints(Long points) {
-		this.points = points;
+	public void setFacebookConnected(Boolean facebookConnected) {
+		this.facebookConnected = facebookConnected;
 	}
 }
