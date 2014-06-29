@@ -60,17 +60,29 @@ define(['./plataforma'], function (plataforma) {
     		templateUrl: 'scripts/views/resultado/cadastro.html',
     		controller: 'CadastroResultadoController'
     	});
-    	$routeProvider.when('/resultado/cadastro', {
-    		templateUrl: 'scripts/views/resultado/cadastro.html',
-    		controller: 'CadastroResultadoController'
+    	$routeProvider.when('/campeonato/cadastro', {
+    		templateUrl: 'scripts/views/campeonato/cadastro.html',
+    		controller: 'CadastroCampeonatoController'
     	});
     	$routeProvider.when('/campeonato/consulta', {
             templateUrl: 'scripts/views/campeonato/consulta.html',
-            controller: 'ConsultaCampeonatoController'
+            controller: 'CadastroCampeonatoController'
         });
     	$routeProvider.when('/campeonato/:idCampeonato', {
     		templateUrl: 'scripts/views/campeonato/cadastro.html',
     		controller: 'CadastroCampeonatoController'
+    	});
+    	$routeProvider.when('/rodada/cadastro', {
+    		templateUrl: 'scripts/views/rodada/cadastro.html',
+    		controller: 'CadastroRodadaController'
+    	});
+    	$routeProvider.when('/rodada/consulta', {
+            templateUrl: 'scripts/views/rodada/consulta.html',
+            controller: 'CadastroRodadaController'
+        });
+    	$routeProvider.when('/rodada/:idRodada', {
+    		templateUrl: 'scripts/views/rodada/cadastro.html',
+    		controller: 'CadastroRodadaController'
     	});
     	
         $routeProvider.otherwise({

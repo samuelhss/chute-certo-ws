@@ -3,5 +3,6 @@ define([
     './PartidaService',
     './ResultadoService',
     './TimeService',
-    './CampeonatoService'
+    './CampeonatoService',
+    './RodadaService'
 ], function () {});

@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import bepid.ccerto.result.domain.Result;
 import bepid.ccerto.round.domain.Round;
 import bepid.ccerto.team.domain.Team;
 
@@ -22,6 +24,7 @@ public class Match {
 	private Team awayTeam;
 	private Calendar date;
 	private Round round;
+	private Result result;
 	
 	@Id
 	@GeneratedValue
@@ -71,5 +74,15 @@ public class Match {
 
 	public void setRound(Round round) {
 		this.round = round;
+	}
+
+	@OneToOne(mappedBy = "match", targetEntity = Result.class)
+	@JoinColumn(name = "SEQ_RESULT")
+	public Result getResult() {
+		return result;
+	}
+
+	public void setResult(Result result) {
+		this.result = result;
 	}
 }

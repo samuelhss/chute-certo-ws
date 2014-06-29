@@ -11,14 +11,16 @@ public class MatchDto {
 	public TeamDto homeTeam;
 	public TeamDto awayTeam;
 	public Calendar date;
+	public Boolean hasResult;
 	
 	public MatchDto() {}
 	
 	public MatchDto(Match match) {
-		this.id = match.getId();
-		this.homeTeam = new TeamDto(match.getHomeTeam());
-		this.awayTeam = new TeamDto(match.getAwayTeam());
-		this.date = match.getDate();
+		id = match.getId();
+		homeTeam = new TeamDto(match.getHomeTeam());
+		awayTeam = new TeamDto(match.getAwayTeam());
+		date = match.getDate();
+		hasResult = match.getResult() != null;
 	}
 
 	public Match convertToEntity() {

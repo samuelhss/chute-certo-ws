@@ -8,9 +8,11 @@ define(['./_module'], function (controllers) {
 			 '$alert', 
 			 '$routeParams',
 			 'TimeService',
-			 function ($scope, partidaService, $sce, $alert, $routeParams, timeService) {
+			 'CampeonatoService',
+			 function ($scope, partidaService, $sce, $alert, $routeParams, timeService, campeonatoService) {
 				
 		$scope.match = {};
+		$scope.championship = {};
 		
 		if (angular.isDefined($routeParams.idPartida)) {
 			partidaService.findById($routeParams.idPartida).then(function(result) {
@@ -22,6 +24,17 @@ define(['./_module'], function (controllers) {
 		
 		timeService.findAll().then(function(result) {
 			$scope.teams = result.data;
+		});
+		
+		$scope.getRounds = function() {
+			console.log($scope.championship);
+			var rounds = $scope.championship.rounds;
+			console.log(rounds);
+			return rounds;
+		};
+		
+		campeonatoService.findAll().then(function(result) {
+			$scope.championships = result.data;
 		});
 			        
         $scope.save = function() {

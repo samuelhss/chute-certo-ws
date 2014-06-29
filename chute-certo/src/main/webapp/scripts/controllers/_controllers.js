@@ -9,5 +9,8 @@ define([
     './ConsultaPartidaController',
     './CadastroResultadoController',
     './ConsultaResultadoController',
-    './ConsultaCampeonatoController'
+    './CadastroCampeonatoController',
+    './ConsultaCampeonatoController',
+    './CadastroRodadaController',
+    './ConsultaRodadaController'
 ], function () {});

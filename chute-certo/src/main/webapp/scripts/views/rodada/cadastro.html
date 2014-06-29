@@ -1,0 +1,35 @@
+<div>
+    <div class="breadcrumb">
+		<h4>Cadastro de Rodada</h4>
+	</div>
+    <form name="roundForm">
+    
+    	<div class="form-group">
+    		<label for="nome">Campeonato</label>
+			<div class="input-group">
+	            <ui-select ng-model="round.championship">
+	              <ui-select-match placeholder="Selecione ou procure um campeonato na lista...">{{$select.selected.description}}</ui-select-match>
+	              <ui-select-choices repeat="championship in championships | filter: $select.search">
+	                <span data-ng-bind-html="championship.description | highlight: $select.search"></span>
+	              </ui-select-choices>
+	            </ui-select>
+	            <span class="input-group-btn">
+	              <button data-ng-click="round.championship = undefined" class="btn btn-default">
+	                <span class="glyphicon glyphicon-trash"></span>
+	              </button>
+	            </span>
+          	</div>
+		</div>
+		
+        <div class="form-group has-feedback" data-ng-class="{ 'has-error' : isInvalid('descricao') && (isSubmitted() || isBlured('descricao')), 'has-success' : !isInvalid('descricao') && isBlured('descricao')}; ">
+			<label class="control-label required" for="descricao">Descricao</label>
+			<input data-ng-blur type="text" class="form-control" id="descricao" name="descricao" data-ng-model="round.description" placeholder="Informe uma descri&ccedil;&atilde;o." required data-ng-minlength="3" size="20"/>
+			<span data-ng-show="isInvalid('descricao') && (isSubmitted() || isBlured('descricao'))" class="glyphicon glyphicon-remove form-control-feedback"></span>
+			<span data-ng-show="!isInvalid('descricao') && isBlured('descricao')" class="glyphicon glyphicon-ok form-control-feedback"></span>
+			<p class="help-block" data-ng-show="(isSubmitted() || isBlured('descricao')) && roundForm.nome.$error.required">&Eacute; necess&aacute;rio informar uma descri&ccedil;&atilde;o.</p>
+			<p class="help-block" data-ng-show="roundForm.nome.$error.minlength && (isSubmitted() || isBlured('descricao'))">A descri&ccedil;&aatilde;o deve conter no m&iacute;nimo 3 caracteres.</p>
+		</div>
+
+        <button class="btn btn-primary" type="button" data-ng-click="submit()">Salvar</button>
+    </form>
+</div>

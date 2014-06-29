@@ -24,7 +24,7 @@ public class Result {
 		this.id = id;
 	}
 	
-	@ManyToOne(targetEntity = Match.class)
+	@OneToOne(targetEntity = Match.class)
 	@JoinColumn(name = "SEQ_MATCH")
 	public Match getMatch() {
 		return match;
