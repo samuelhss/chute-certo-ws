@@ -13,6 +13,8 @@ define(['./_module'], function (controllers) {
 				
 		$scope.match = {};
 		$scope.championship = {};
+		$scope.round = {};
+		$scope.date = {};
 		
 		if (angular.isDefined($routeParams.idPartida)) {
 			partidaService.findById($routeParams.idPartida).then(function(result) {
@@ -26,20 +28,16 @@ define(['./_module'], function (controllers) {
 			$scope.teams = result.data;
 		});
 		
-		$scope.getRounds = function() {
-			console.log($scope.championship);
-			var rounds = $scope.championship.rounds;
-			console.log(rounds);
-			return rounds;
-		};
-		
 		campeonatoService.findAll().then(function(result) {
 			$scope.championships = result.data;
+			console.log($scope.championships);
 		});
 			        
         $scope.save = function() {
+        	$scope.match.idRound = $scope.round.selected.id;
+        	$scope.match.date = $scope.date;
+        	var mensagem = "Partida " + $scope.match.homeTeam.name +" x " + $scope.match.awayTeam.name + " inserida com sucesso.";				
         	partidaService.save($scope.match).success(function(data) {
-    			var mensagem = "Partida '" + data.id + "' inserida com sucesso.";				
 				$alert({title: '', content: $sce.trustAsHtml('<p>' + mensagem + '</p>'), placement: 'top', type: 'success', show: true});
 			}).error(function(data, status) {
 				console.log("Ocorreu erro ao efetuar a operacao.");

@@ -24,14 +24,14 @@
 		<div class="form-group" data-ng-if="championship.selected">
     		<label for="nome">Rodada</label>
 			<div class="input-group">
-	            <ui-select ng-model="match.round">
+	            <ui-select ng-model="round.selected">
 	              <ui-select-match placeholder="Selecione ou procure uma rodada na lista...">{{$select.selected.description}}</ui-select-match>
 	              <ui-select-choices repeat="round in championship.selected.rounds | filter: $select.search">
 	                <span data-ng-bind-html="round.description | highlight: $select.search"></span>
 	              </ui-select-choices>
 	            </ui-select>
 	            <span class="input-group-btn">
-	              <button data-ng-click="match.round = undefined" class="btn btn-default">
+	              <button data-ng-click="round.selected = undefined" class="btn btn-default">
 	                <span class="glyphicon glyphicon-trash"></span>
 	              </button>
 	            </span>
@@ -73,7 +73,7 @@
 		
 		<div class="form-group">
 			<label class="control-label" for="dataNascimento">Data</label>
-			<input data-ng-blur type="text" class="form-control" id="matchDate" name="matchDate" data-ng-model="match.date" 
+			<input type="text" class="form-control" id="matchDate" name="matchDate" data-ng-model="date" 
 				data-bs-datepicker data-animation="am-fade-and-slide-top" data-date-format="dd/MM/yyyy" data-autoclose="true"/>
 		</div>
 		

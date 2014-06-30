@@ -1,49 +1,29 @@
 define(['./_module'], function (services) {
 	'use strict';
 	
-    services.factory('TurmaService', ['$http',function ($http) {
+    services.factory('ResultadoService', ['$http',function ($http) {
     	return {
-    		init: function() { 
-    			return {
-	    			id: null,
-	    			descricao: '',
-    			 	maximoAlunos: '',
-    			 	dataHora: null,
-    			 	disciplina: null,
-    			 	professor: null
-    			};
-    		},
     		findById: function(id) {
-    			return $http.get('/escola-imaa/api/turma/get/'+id).success(function(data, status) {
-    				console.log("Retornando turma '" + nome + "'.");
-    			});
-    		},
-    		findByName: function(descricao) {
-    			return $http.get('/escola-imaa/api/turma/search?descricao='+descricao).success(function(data, status) {
-    				console.log("Retornando turmas que contenham '" +descricao + "' na descri��o");
+    			return $http.get('/chute-certo/api/result/get/'+id).success(function(data, status) {
+    				console.log("Retornando resultado '" + id + "'.");
     			});
     		},
     		findByDto: function(pesquisaDto) {
-    			return $http.post('/escola-imaa/api/turma/advancedSearch', pesquisaDto).success(function(data, status) {
-    				console.log("Retornando turmas que contenham '" + descricao + "' no descri��o");
+    			return $http.post('/chute-certo/api/result/search', pesquisaDto).success(function(data, status) {
+    				console.log("Retornando pesquisa de resultados.");
     			});
     		},
-    	
     		findAll: function() {
-    			return $http.get('/escola-imaa/api/turma/list').success(function(data, status, headers, config) {
-    				console.log("Lista de turmas carregada com sucesso.");
+    			return $http.get('/chute-certo/api/result/list').success(function(data, status, headers, config) {
+    				console.log("Lista de resultados carregada.");
     			});
+    		},		
+    		save: function(result) {
+    			return $http.post('/chute-certo/api/result/save', result);	
     		},
-    		
-    		save: function(turma) {
-    			return $http.post('/escola-imaa/api/turma/save', turma);	
-    		},
-    		matricula: function(matricula) {
-    			return $http.post('/escola-imaa/api/turma/matricula', matricula);	
-    		},
-    		remove: function(turma) {
-    			return $http.get('/escola-imaa/api/turma/remove/'+turma.id).success(function(data) {
-    				console.log("Turma '" + turma.descricao + "' removido com sucesso. ID: " + turma.id);
+    		remove: function(result) {
+    			return $http.get('/chute-certo/api/turma/remove/'+result.id).success(function(data) {
+    				console.log("Resultado removido com sucesso. ID: " + result.id);
     			});
     		},
     	};

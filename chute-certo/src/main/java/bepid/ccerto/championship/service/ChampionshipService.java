@@ -7,10 +7,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bepid.ccerto.championship.datatransfer.ChampionshipDto;
@@ -47,8 +47,14 @@ public class ChampionshipService {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ChampionshipDto get(@PathVariable Long id) {
+		return new ChampionshipDto(championshipRepository.findOne(id));
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/{id}/rounds", method = RequestMethod.GET)
-	public List<RoundDto> rounds(@RequestParam Long id) {
+	public List<RoundDto> rounds(@PathVariable Long id) {
 		Set<Round> lista = championshipRepository.findOne(id).getRounds();
 		List<RoundDto> listaDto = new ArrayList<RoundDto>();
 		

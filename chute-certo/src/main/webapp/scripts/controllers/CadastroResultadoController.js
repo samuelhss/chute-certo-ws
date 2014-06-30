@@ -3,53 +3,37 @@ define(['./_module'], function (controllers) {
 	
 	controllers.controller('CadastroResultadoController', 
 			['$scope', 
-			 'TurmaService', 
 			 '$sce',
 			 'ResultadoService', 
 			 '$alert',
-			 'ProfessorService',
 			 '$routeParams',
-			 function ($scope, turmaService, $sce, disciplinaService, $alert, professorService, $routeParams) {
+			 'PartidaService',
+			 function ($scope, $sce, resultadoService, $alert, $routeParams, partidaService) {
 			
-		$scope.turma = turmaService.init();
-		
-		$scope.disciplina = {};
-		$scope.professor = {};
+		$scope.result = {};
 
-		if (angular.isDefined($routeParams.idTurma)) {
-			turmaService.findById($routeParams.idTurma).then(function(result) {
-				$scope.turma.id = result.data.id;
-				$scope.turma.descricao = result.data.descricao;
-				$scope.turma.maximoAlunos = result.data.maximoAlunos;
-				$scope.turma.dataHora = result.data.dataHora;
-				$scope.disciplina = result.data.disciplina;
-				$scope.professor = result.data.professor;
+		if (angular.isDefined($routeParams.idResultado)) {
+			resultadoService.findById($routeParams.idResultado).then(function(result) {
+				$scope.result.id = result.data.id;
+				$scope.result.match = result.data.match;
+				$scope.result.scoreHome = result.data.scoreHome;
+				$scope.result.scoreAway = result.data.scoreAway;
 			});
 		}
 		
-		disciplinaService.findAll().then(function(result) {
-			$scope.disciplinas = result.data;
-		});
-		
-		professorService.findAll().then(function(result) {
-			$scope.professores = result.data;
+		partidaService.findAll().then(function(result) {
+			$scope.matches = result.data;
 		});
 	        
         $scope.save = function() {
-        	$scope.turma.disciplina = $scope.disciplina.selected;
-        	$scope.turma.professor = $scope.professor.selected;
-        	
-        	turmaService.save($scope.turma).success(function(data) {
-    			var mensagem = "";
-						mensagem = "Turma '" + data.descricao  + "' inserida com sucesso." ;
-					
-				
+        	resultadoService.save($scope.result).success(function(data) {
+    			var mensagem = "Resultado inserido com sucesso.";
 				$alert({title: '', content: $sce.trustAsHtml('<p>' + mensagem + '</p>'), placement: 'top', type: 'success', show: true});
 			}).error(function(data, status) {
-				console.log("Ocorreu erro ao efetuar a operacao com a turma.");
+				console.log("Ocorreu erro ao efetuar a operacao.");
 				$alert({title: 'Erro', content: $sce.trustAsHtml('<p>Ocorreu erro ao efetuar a operacao.</p>'), placement: 'top', type: 'danger', show: true});
 			});
-    		$scope.turma = turmaService.init();
+    		$scope.result = {};
         };
        
     }]);

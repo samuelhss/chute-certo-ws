@@ -3,15 +3,17 @@ package bepid.ccerto.match.datatransfer;
 import java.util.Calendar;
 
 import bepid.ccerto.match.domain.Match;
+import bepid.ccerto.result.datatransfer.ResultDto;
 import bepid.ccerto.team.datatransfer.TeamDto;
 
-public class MatchDto {
+public class MatchDto implements Comparable<MatchDto>{
 	
 	public Long id;
 	public TeamDto homeTeam;
 	public TeamDto awayTeam;
 	public Calendar date;
-	public Boolean hasResult;
+	public Long idRound;
+	public ResultDto result;
 	
 	public MatchDto() {}
 	
@@ -20,7 +22,8 @@ public class MatchDto {
 		homeTeam = new TeamDto(match.getHomeTeam());
 		awayTeam = new TeamDto(match.getAwayTeam());
 		date = match.getDate();
-		hasResult = match.getResult() != null;
+		idRound = match.getRound().getId();
+		result = match.getResult() != null ? new ResultDto(match.getResult()) : null;
 	}
 
 	public Match convertToEntity() {
@@ -31,6 +34,16 @@ public class MatchDto {
 		match.setDate(date);
 		
 		return match;
+	}
+
+	@Override
+	public int compareTo(MatchDto other) {
+		
+		if (this.date.compareTo(other.date) == 0) {
+			return this.id.compareTo(other.id);
+		}
+		
+		return this.date.compareTo(other.date);
 	}
 
 }

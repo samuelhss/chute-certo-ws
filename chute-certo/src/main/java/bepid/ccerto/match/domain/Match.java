@@ -16,7 +16,7 @@ import bepid.ccerto.round.domain.Round;
 import bepid.ccerto.team.domain.Team;
 
 @Entity
-@Table(name = "SOCCER_MATCH")
+@Table(name = "MATCHES")
 public class Match {
 	
 	private Long id;

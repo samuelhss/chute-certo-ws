@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bepid.ccerto.match.datatransfer.MatchDto;
 import bepid.ccerto.match.domain.Match;
 import bepid.ccerto.match.repository.MatchRepository;
+import bepid.ccerto.round.repository.RoundRepository;
 
 @Controller
 @RequestMapping(value = "/match")
@@ -23,10 +24,16 @@ public class MatchService {
 	@Autowired
 	MatchRepository matchRepository;
 	
+	@Autowired
+	RoundRepository roundRepository;
+	
 	@Transactional
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public MatchDto save(@RequestBody MatchDto dto) {
-		return new MatchDto(matchRepository.save(dto.convertToEntity()));
+		Match match = dto.convertToEntity();
+		match.setResult(null);
+		match.setRound(roundRepository.findOne(dto.idRound));
+		return new MatchDto(matchRepository.save(match));
 	}
 	
 	@ResponseBody

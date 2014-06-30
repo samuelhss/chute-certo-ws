@@ -23,7 +23,11 @@ define(['./_module'], function (services) {
     				console.log("Lista de campeonatos carregada.");
     			});
     		},
-    		
+    		getRounds: function(id) {
+    			return $http.get('/chute-certo/api/championship/' + id + '/rounds').success(function(data, status, headers, config) {
+    				console.log("Lista de rodadas carregada.");
+    			});
+    		},
     		save: function(championship) {
     			return $http.post('/chute-certo/api/championship/save', championship);	
     		},
