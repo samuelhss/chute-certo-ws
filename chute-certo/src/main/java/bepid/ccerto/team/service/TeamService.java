@@ -5,8 +5,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javapns.Push;
+import javapns.communication.exceptions.CommunicationException;
+import javapns.communication.exceptions.KeystoreException;
 
 import javax.servlet.ServletContext;
 
@@ -30,6 +39,16 @@ import bepid.ccerto.team.datatransfer.TeamDto;
 import bepid.ccerto.team.domain.Team;
 import bepid.ccerto.team.repository.TeamRepository;
 import bepid.ccerto.util.utils.Paths;
+
+import com.notnoop.apns.APNS;
+import com.notnoop.apns.ApnsService;
+import com.notnoop.apns.PayloadBuilder;
+import com.relayrides.pushy.apns.ApnsEnvironment;
+import com.relayrides.pushy.apns.PushManager;
+import com.relayrides.pushy.apns.PushManagerFactory;
+import com.relayrides.pushy.apns.util.ApnsPayloadBuilder;
+import com.relayrides.pushy.apns.util.SimpleApnsPushNotification;
+import com.relayrides.pushy.apns.util.TokenUtil;
 
 @Controller
 @RequestMapping(value = "/team")
@@ -63,6 +82,66 @@ public class TeamService {
 		return listaDto;
 	}
 	
+	@RequestMapping("/test-push3")
+	public void push3() {
+		ApnsService service =
+	    APNS.newService()
+	    .withCert(Paths.LOCAL_FILES
+       		+ File.separator + "push-notifications"
+        		+ File.separator + "ChuteCertoApp.p12", "bepid105886")
+	    .withSandboxDestination()
+			    .build();
+		service.start();
+		
+		PayloadBuilder payloadBuilder = APNS.newPayload();
+		payloadBuilder = payloadBuilder.badge(10).alertBody("Can't be simpler than this!");
+		
+		if (payloadBuilder.isTooLong()) {
+			payloadBuilder = payloadBuilder.shrinkBody();
+		}
+		
+		String payload = payloadBuilder.build();
+		String token = "969946f56920e21caeb6d8ab27abb5457789b43bfa93abc106d106f7166cf03f";
+		service.push(token, payload);
+	}
+	
+	@RequestMapping("/test-push2")
+	public void push2() throws UnrecoverableKeyException, KeyManagementException, KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException, InterruptedException {
+		final PushManagerFactory<SimpleApnsPushNotification> pushManagerFactory =
+		        new PushManagerFactory<SimpleApnsPushNotification>(
+		                ApnsEnvironment.getSandboxEnvironment(),
+		                PushManagerFactory.createDefaultSSLContext(
+		                		Paths.LOCAL_FILES
+		                		+ File.separator + "push-notifications"
+		                		+ File.separator + "ChuteCertoApp.p12", "bepid105886"));
+
+		final PushManager<SimpleApnsPushNotification> pushManager =
+		        pushManagerFactory.buildPushManager();
+
+		pushManager.start();
+		
+		final byte[] token = TokenUtil.tokenStringToByteArray(
+			    "<969946f5 6920e21c aeb6d8ab 27abb545 7789b43b fa93abc1 06d106f7 166cf03f>");
+
+			final ApnsPayloadBuilder payloadBuilder = new ApnsPayloadBuilder();
+
+			payloadBuilder.setAlertBody("Ring ring, Neo.");
+			payloadBuilder.setSoundFileName("ring-ring.aiff");
+
+			final String payload = payloadBuilder.buildWithDefaultMaximumLength();
+
+			pushManager.getQueue().put(new SimpleApnsPushNotification(token, payload));
+
+	}
+	
+	@RequestMapping("/test-push")
+	public void push() throws CommunicationException, KeystoreException {		
+		Push.alert("Hello World!", Paths.LOCAL_FILES
+        		+ File.separator + "push-notifications"
+        		+ File.separator + "ChuteCertoApp.p12", "bepid105886", false,"969946f56920e21caeb6d8ab27abb5457789b43bfa93abc106d106f7166cf03f");
+
+	}
+	
 	@RequestMapping(value="/flag/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("name") String name,
             @RequestParam("file") MultipartFile file){
@@ -73,7 +152,7 @@ public class TeamService {
                 byte[] bytes = file.getBytes();
                 
                 //mudar para JELASTIC_FILES
-                File dir = new File(Paths.LOCAL_FILES
+                File dir = new File(Paths.JELASTIC_FILES
                 		+ File.separator + "images" + File.separator + "flags");
                 if (!dir.exists())
                     dir.mkdirs();
@@ -106,7 +185,7 @@ public class TeamService {
 	@RequestMapping("/flag/{sigla}")
 	public ResponseEntity<byte[]> flag(@PathVariable String sigla) throws IOException {
 	    
-		File dir = new File(Paths.LOCAL_FILES
+		File dir = new File(Paths.JELASTIC_FILES
         		+ File.separator + "images" + File.separator + "flags");
         File serverFile = new File(dir.getAbsolutePath()
                 + File.separator + sigla.toUpperCase() + ".png");
@@ -122,7 +201,7 @@ public class TeamService {
 	@RequestMapping("/choice/{sigla}")
 	public ResponseEntity<byte[]> image(@PathVariable String sigla) throws IOException {
 	    
-		File dir = new File(Paths.LOCAL_FILES
+		File dir = new File(Paths.JELASTIC_FILES
         		+ File.separator + "images" + File.separator + "choices_flags");
         File serverFile = new File(dir.getAbsolutePath()
                 + File.separator + sigla.toUpperCase() + ".png");
