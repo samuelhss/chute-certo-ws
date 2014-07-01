@@ -7,14 +7,14 @@
     	<div class="form-group">
     		<label for="nome">Campeonato</label>
 			<div class="input-group">
-	            <ui-select ng-model="round.championship">
+	            <ui-select ng-model="championship.selected">
 	              <ui-select-match placeholder="Selecione ou procure um campeonato na lista...">{{$select.selected.description}}</ui-select-match>
 	              <ui-select-choices repeat="championship in championships | filter: $select.search">
 	                <span data-ng-bind-html="championship.description | highlight: $select.search"></span>
 	              </ui-select-choices>
 	            </ui-select>
 	            <span class="input-group-btn">
-	              <button data-ng-click="round.championship = undefined" class="btn btn-default">
+	              <button data-ng-click="championship.selected = undefined" class="btn btn-default">
 	                <span class="glyphicon glyphicon-trash"></span>
 	              </button>
 	            </span>

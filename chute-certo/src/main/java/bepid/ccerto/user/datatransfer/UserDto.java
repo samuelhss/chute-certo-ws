@@ -12,7 +12,9 @@ public class UserDto implements Comparable<UserDto> {
 	public Boolean facebookConnected;
 	public Long points;
 	
-	UserDto() {}
+	UserDto() {
+		points = 0L;
+	}
 	
 	public UserDto(User user) {
 		nickname = user.getNickname();
@@ -20,6 +22,7 @@ public class UserDto implements Comparable<UserDto> {
 		gender = user.getGender().getId();
 		id = user.getId();
 		facebookConnected = user.isFacebookConnected();
+		points = 0L;
 	}
 	
 	public User convertToEntity() {

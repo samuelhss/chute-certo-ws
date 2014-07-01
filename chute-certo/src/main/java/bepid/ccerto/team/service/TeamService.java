@@ -185,7 +185,7 @@ public class TeamService {
 	@RequestMapping("/flag/{sigla}")
 	public ResponseEntity<byte[]> flag(@PathVariable String sigla) throws IOException {
 	    
-		File dir = new File(Paths.JELASTIC_FILES
+		File dir = new File(Paths.LOCAL_FILES
         		+ File.separator + "images" + File.separator + "flags");
         File serverFile = new File(dir.getAbsolutePath()
                 + File.separator + sigla.toUpperCase() + ".png");

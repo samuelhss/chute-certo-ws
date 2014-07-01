@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bepid.ccerto.match.repository.MatchRepository;
 import bepid.ccerto.result.datatransfer.ResultDto;
 import bepid.ccerto.result.domain.Result;
 import bepid.ccerto.result.repository.ResultRepository;
@@ -25,11 +26,15 @@ public class ResultService {
 	@Autowired
 	ResultRepository resultRepository;
 	
+	@Autowired
+	MatchRepository matchRepository;
+	
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ResultDto save(@RequestBody ResultDto dto) {
-		
-		return new ResultDto(resultRepository.save(dto.convertToEntity()));
+		Result result = dto.convertToEntity();
+		result.setMatch(matchRepository.findOne(dto.idMatch));
+		return new ResultDto(resultRepository.save(result));
 	}
 	
 	@ResponseBody

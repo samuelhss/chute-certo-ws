@@ -25,7 +25,7 @@ public class Result {
 	}
 	
 	@OneToOne(targetEntity = Match.class)
-	@JoinColumn(name = "SEQ_MATCH")
+	@JoinColumn(name = "SEQ_MATCH", unique = true)
 	public Match getMatch() {
 		return match;
 	}

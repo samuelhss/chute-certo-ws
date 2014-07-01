@@ -11,6 +11,7 @@ define(['./_module'], function (controllers) {
 			 function ($scope, $sce, roundService, $alert, championshipService, $routeParams) {
 			
 		$scope.round = {};
+		$scope.championship = {};
 		
 $scope.submitted = false;
 		
@@ -50,6 +51,7 @@ $scope.submitted = false;
 		});
 	        
         $scope.save = function() {
+        	$scope.round.idChampionship = $scope.championship.selected.id;
         	roundService.save($scope.round).success(function(data) {
     			var mensagem = "Rodada '" + data.description  + "' inserida com sucesso." ;
 				$alert({title: '', content: $sce.trustAsHtml('<p>' + mensagem + '</p>'), placement: 'top', type: 'success', show: true});

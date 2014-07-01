@@ -6,16 +6,17 @@
 		<div class="form-group">
 			<label for="nome">Partida</label>
 			<div class="input-group">
-	            <ui-select ng-model="result.match">
+	            <ui-select ng-model="match.selected">
 	              <ui-select-match placeholder="Selecione ou procure uma partida na lista...">
 	              	{{$select.selected.homeTeam.name + ' x ' + $select.selected.awayTeam.name}}
 	              </ui-select-match>
 	              <ui-select-choices repeat="match in matches | filter: $select.search">
 	                <span data-ng-bind-html="match.homeTeam.name + ' x ' + match.awayTeam.name | highlight: $select.search"></span>
 	              </ui-select-choices>
+	              
 	            </ui-select>
 	            <span class="input-group-btn">
-	              <button data-ng-click="result.match = undefined" class="btn btn-default">
+	              <button data-ng-click="match.selected = undefined" class="btn btn-default">
 	                <span class="glyphicon glyphicon-trash"></span>
 	              </button>
 	            </span>

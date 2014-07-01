@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bepid.ccerto.championship.repository.ChampionshipRepository;
 import bepid.ccerto.match.datatransfer.MatchDto;
 import bepid.ccerto.match.domain.Match;
 import bepid.ccerto.round.datatransfer.RoundDto;
@@ -25,10 +26,15 @@ public class RoundService {
 	@Autowired
 	RoundRepository roundRepository;
 	
+	@Autowired
+	ChampionshipRepository championshipRepository;
+	
 	@ResponseBody
 	@RequestMapping("/save")
 	public RoundDto save(@RequestBody RoundDto dto) {
-		return new RoundDto(roundRepository.save(dto.convertToEntity()));
+		Round round = dto.convertToEntity();
+		round.setChampionship(championshipRepository.findOne(dto.idChampionship));
+		return new RoundDto(roundRepository.save(round));
 	}
 	
 	@ResponseBody
