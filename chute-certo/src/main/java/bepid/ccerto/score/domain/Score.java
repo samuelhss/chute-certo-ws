@@ -23,7 +23,7 @@ public class Score {
 	}
 	
 	@OneToOne
-	@JoinColumn(name = "SEQ_GUESS")
+	@JoinColumn(name = "SEQ_GUESS", unique = true)
 	public Guess getGuess() {
 		return guess;
 	}
@@ -32,7 +32,7 @@ public class Score {
 		this.guess = guess;
 	}
 	
-	@Column(name = "POINTS")
+	@Column(name = "POINTS", nullable  = false, columnDefinition = "int default 0")
 	public Long getPoints() {
 		return points;
 	}

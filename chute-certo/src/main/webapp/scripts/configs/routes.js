@@ -84,6 +84,14 @@ define(['./plataforma'], function (plataforma) {
     		templateUrl: 'scripts/views/rodada/cadastro.html',
     		controller: 'CadastroRodadaController'
     	});
+    	$routeProvider.when('/notificar/todos', {
+            templateUrl: 'scripts/views/notificacao/todos.html',
+            controller: 'NotificarTodosController'
+        });
+    	$routeProvider.when('/notificar/usuario', {
+    		templateUrl: 'scripts/views/notificacao/usuario.html',
+    		controller: 'NotificarUsuarioController'
+    	});
     	
         $routeProvider.otherwise({
             redirectTo: '/index'

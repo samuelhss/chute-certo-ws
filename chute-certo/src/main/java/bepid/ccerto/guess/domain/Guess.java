@@ -1,8 +1,16 @@
 package bepid.ccerto.guess.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import bepid.ccerto.match.domain.Match;
+import bepid.ccerto.score.domain.Score;
 import bepid.ccerto.user.domain.User;
 
 @Entity
@@ -14,6 +22,7 @@ public class Guess {
 	private Match match;
 	private String scoreHome;
 	private String scoreAway;
+	private Score score;
 	
 	@Id
 	@GeneratedValue
@@ -62,5 +71,15 @@ public class Guess {
 	
 	public void setScoreAway(String scoreAway) {
 		this.scoreAway = scoreAway;
+	}
+
+	@OneToOne(mappedBy = "guess", targetEntity = Score.class)
+	@JoinColumn(name = "SEQ_GUESS")
+	public Score getScore() {
+		return score;
+	}
+
+	public void setScore(Score score) {
+		this.score = score;
 	}
 }

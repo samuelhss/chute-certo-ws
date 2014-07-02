@@ -17,7 +17,8 @@ require.config({
          'ui.utils':'../libs/angular/angular-ui/ui-utils/ui-utils',
          'angular.validation':'../libs/angular/validation/angular-validation',
          'angular.upload':'../libs/angular/upload/angular-file-upload',
-         'utils': '../util/util'
+         'utils': '../util/util',
+         'notifications': '../util/notifications'
      },
  
      shim: {

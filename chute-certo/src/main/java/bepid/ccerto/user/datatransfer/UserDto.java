@@ -11,6 +11,7 @@ public class UserDto implements Comparable<UserDto> {
 	public String email;
 	public Boolean facebookConnected;
 	public Long points;
+	public String token;
 	
 	UserDto() {
 		points = 0L;
@@ -22,6 +23,7 @@ public class UserDto implements Comparable<UserDto> {
 		gender = user.getGender().getId();
 		id = user.getId();
 		facebookConnected = user.isFacebookConnected();
+		token = user.getToken();
 		points = 0L;
 	}
 	
@@ -32,6 +34,7 @@ public class UserDto implements Comparable<UserDto> {
 		user.setGender(Gender.getById(gender));
 		user.setId(id);
 		user.setFacebookConnected(facebookConnected);
+		user.setToken(token);
 
 		return user;
 	}

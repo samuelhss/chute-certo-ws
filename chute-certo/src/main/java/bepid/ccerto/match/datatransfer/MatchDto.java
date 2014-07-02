@@ -14,6 +14,7 @@ public class MatchDto implements Comparable<MatchDto>{
 	public Calendar date;
 	public Long idRound;
 	public ResultDto result;
+	public Boolean special;
 	
 	public MatchDto() {}
 	
@@ -24,6 +25,7 @@ public class MatchDto implements Comparable<MatchDto>{
 		date = match.getDate();
 		idRound = match.getRound().getId();
 		result = match.getResult() != null ? new ResultDto(match.getResult()) : null;
+		special = match.isSpecial();
 	}
 
 	public Match convertToEntity() {
@@ -32,6 +34,7 @@ public class MatchDto implements Comparable<MatchDto>{
 		match.setHomeTeam(homeTeam.convertToEntity());
 		match.setAwayTeam(awayTeam.convertToEntity());
 		match.setDate(date);
+		match.setSpecial(special);
 		
 		return match;
 	}

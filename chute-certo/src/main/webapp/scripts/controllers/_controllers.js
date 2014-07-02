@@ -12,5 +12,7 @@ define([
     './CadastroCampeonatoController',
     './ConsultaCampeonatoController',
     './CadastroRodadaController',
-    './ConsultaRodadaController'
+    './ConsultaRodadaController',
+    './NotificarTodosController',
+    './NotificarUsuarioController'
 ], function () {});

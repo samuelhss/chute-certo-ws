@@ -202,7 +202,7 @@ public class TeamService {
 	@RequestMapping("/choice/{sigla}")
 	public ResponseEntity<byte[]> image(@PathVariable String sigla) throws IOException {
 	    
-		File dir = new File(Paths.JELASTIC_FILES
+		File dir = new File(Paths.LOCAL_FILES
         		+ File.separator + "images" + File.separator + "choices_flags");
         File serverFile = new File(dir.getAbsolutePath()
                 + File.separator + sigla.toUpperCase() + ".png");

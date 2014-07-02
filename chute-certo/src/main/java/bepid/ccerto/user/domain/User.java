@@ -1,7 +1,17 @@
 package bepid.ccerto.user.domain;
 
-import javax.persistence.*;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import bepid.ccerto.guess.domain.Guess;
 import bepid.ccerto.util.converter.FlagGenderConverter;
 import bepid.ccerto.util.converter.FlagSimNaoConverter;
 
@@ -14,6 +24,8 @@ public class User {
 	private String email;
 	private Gender gender;
 	private Boolean facebookConnected;
+	private String token;
+	private List<Guess> shots;
 	
 	@Id
 	@GeneratedValue
@@ -35,7 +47,7 @@ public class User {
 		this.nickname = nickname;
 	}
 	
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -62,5 +74,23 @@ public class User {
 	
 	public void setFacebookConnected(Boolean facebookConnected) {
 		this.facebookConnected = facebookConnected;
+	}
+
+	@Column(name = "DEVICE_TOKEN")
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	public List<Guess> getShots() {
+		return shots;
+	}
+
+	public void setShots(List<Guess> shots) {
+		this.shots = shots;
 	}
 }

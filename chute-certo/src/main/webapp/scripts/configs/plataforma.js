@@ -16,7 +16,8 @@ define([
     '../directives/_directives',
     '../services/_services',
     '../controllers/_controllers',
-    'utils'
+    'utils',
+    'notifications'
 ], function (angular) {
     'use strict';
 

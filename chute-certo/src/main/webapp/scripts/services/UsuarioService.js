@@ -9,31 +9,36 @@ define(['./_module'], function (services) {
     			};
     		},
     		findById: function(id) {
-    			return $http.get('/escola-imaa/api/aluno/get/'+id).success(function(data, status) {
-    				console.log("Retornando aluno '" + nome + "'.");
+    			return $http.get('/chute-certo/api/user/get/'+id).success(function(data, status) {
+    				console.log("Retornando usuario '" + nome + "'.");
     			});
     		},
     		findByName: function(nome) {
-    			return $http.get('/escola-imaa/api/aluno/search?nome='+nome).success(function(data, status) {
-    				console.log("Retornando alunos que contenham '" + nome + "' no nome");
+    			return $http.get('/chute-certo/api/user/find?nome='+nome).success(function(data, status) {
+    				console.log("Retornando usuarios que contenham '" + nome + "' no nome");
     			});
     		},
     		findByDto: function(pesquisaDto) {
-    			return $http.post('/escola-imaa/api/aluno/advancedSearch', pesquisaDto).success(function(data, status) {
-    				console.log("Retornando alunos que contenham '" + nome + "' no nome");
+    			return $http.post('/chute-certo/api/user/search', pesquisaDto).success(function(data, status) {
+    				console.log("Retornando usuarios que contenham '" + nome + "' no nome");
+    			});
+    		},
+    		notificateAll: function(message) {
+    			return $http.post('/chute-certo/api/user/notificate/all', message).success(function(data, status) {
+    				console.log("Notificacao enviada para todos os usuarios.");
     			});
     		},
     		findAll: function() {
-    			return $http.get('/escola-imaa/api/aluno/list').success(function(data, status, headers, config) {
-    				console.log("Lista de alunos carregada com sucesso.");
+    			return $http.get('/chute-certo/api/user/list').success(function(data, status, headers, config) {
+    				console.log("Lista de usuarios carregada.");
     			});
     		},
-    		save: function(aluno) {
-    			return $http.post('/escola-imaa/api/aluno/save', aluno);	
+    		save: function(user) {
+    			return $http.post('/chute-certo/api/user/save', user);	
     		},
-    		remove: function(aluno) {
-    			return $http.get('/escola-imaa/api/aluno/remove/'+aluno.id).success(function(data) {
-    				console.log("Aluno '" + aluno.nome + "' removido com sucesso. ID: " + aluno.id);
+    		remove: function(user) {
+    			return $http.post('/chute-certo/api/user/remove/'+user.id).success(function(data) {
+    				console.log("Usuario '" + user.nome + "' removido com sucesso. ID: " + user.id);
     			});
     		},
     	};

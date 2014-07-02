@@ -3,6 +3,7 @@ package bepid.ccerto.match.domain;
 import java.util.Calendar;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 import bepid.ccerto.result.domain.Result;
 import bepid.ccerto.round.domain.Round;
 import bepid.ccerto.team.domain.Team;
+import bepid.ccerto.util.converter.FlagSimNaoConverter;
 
 @Entity
 @Table(name = "MATCHES")
@@ -25,6 +27,7 @@ public class Match {
 	private Calendar date;
 	private Round round;
 	private Result result;
+	private Boolean special;
 	
 	@Id
 	@GeneratedValue
@@ -84,5 +87,15 @@ public class Match {
 
 	public void setResult(Result result) {
 		this.result = result;
+	}
+
+	@Convert(converter = FlagSimNaoConverter.class)
+	@Column(name = "FLG_SPECIAL", nullable = false, columnDefinition = "char default 'N'")
+	public Boolean isSpecial() {
+		return special;
+	}
+
+	public void setSpecial(Boolean special) {
+		this.special = special;
 	}
 }

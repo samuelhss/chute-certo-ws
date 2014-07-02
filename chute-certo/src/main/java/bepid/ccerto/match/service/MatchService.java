@@ -49,6 +49,19 @@ public class MatchService {
 		return listaDto;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/specials", method = RequestMethod.GET)
+	public List<MatchDto> specials() {
+		List<Match> lista = matchRepository.getSpecialMatches();
+		List<MatchDto> listaDto = new ArrayList<MatchDto>();
+		
+		for (Match match : lista) {
+			listaDto.add(new MatchDto(match));
+		}
+		
+		return listaDto;
+	}
+	
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public void remove(@PathVariable Long id) {
 		
