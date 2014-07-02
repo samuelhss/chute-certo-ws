@@ -88,13 +88,15 @@ public class TeamService {
 	    APNS.newService()
 	    .withCert(Paths.LOCAL_FILES
        		+ File.separator + "push-notifications"
-        		+ File.separator + "ChuteCertoApp.p12", "bepid105886")
+        		+ File.separator + "iphone_dev.p12", "bepid105886")
 	    .withSandboxDestination()
 			    .build();
 		service.start();
 		
 		PayloadBuilder payloadBuilder = APNS.newPayload();
-		payloadBuilder = payloadBuilder.badge(10).alertBody("Can't be simpler than this!");
+		payloadBuilder = payloadBuilder.badge(1)
+				.alertBody("Novas partidas estao disponiveis!\nAproveite, de seu chute certo agora.")
+				.sound("Default");	
 		
 		if (payloadBuilder.isTooLong()) {
 			payloadBuilder = payloadBuilder.shrinkBody();
@@ -138,8 +140,7 @@ public class TeamService {
 	public void push() throws CommunicationException, KeystoreException {		
 		Push.alert("Hello World!", Paths.LOCAL_FILES
         		+ File.separator + "push-notifications"
-        		+ File.separator + "ChuteCertoApp.p12", "bepid105886", false,"969946f56920e21caeb6d8ab27abb5457789b43bfa93abc106d106f7166cf03f");
-
+        		+ File.separator + "iphone_dev.p12", "bepid105886", false,"969946f56920e21caeb6d8ab27abb5457789b43bfa93abc106d106f7166cf03f");
 	}
 	
 	@RequestMapping(value="/flag/upload", method=RequestMethod.POST)
