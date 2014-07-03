@@ -92,7 +92,7 @@ public class Match {
 	@Convert(converter = FlagSimNaoConverter.class)
 	@Column(name = "FLG_SPECIAL", nullable = false, columnDefinition = "char default 'N'")
 	public Boolean isSpecial() {
-		return special;
+		return special == null ? false : special;
 	}
 
 	public void setSpecial(Boolean special) {

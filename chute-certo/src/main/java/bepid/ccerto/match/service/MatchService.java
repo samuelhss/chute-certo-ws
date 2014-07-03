@@ -64,7 +64,7 @@ public class MatchService {
 	
 	@RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
 	public void remove(@PathVariable Long id) {
-		
+		//TODO
 	}
 
 }

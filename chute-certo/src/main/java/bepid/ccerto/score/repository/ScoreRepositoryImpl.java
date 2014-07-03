@@ -12,8 +12,8 @@ public class ScoreRepositoryImpl implements ScoreRepositoryCustom {
 
 	@Override
 	public Long getTotal(User user) {
-		String sql = "SELECT SUM(POINTS) FROM escola.SCORE score, " +
-						"escola.GUESS guess, escola.USER user " +
+		String sql = "SELECT SUM(POINTS) FROM SCORE score, " +
+						"GUESS guess, USER user " +
 					"WHERE score.SEQ_GUESS = guess.SEQ_GUESS " +
 						"AND guess.SEQ_USER = user.SEQ_USER " +
 						"AND user.SEQ_USER = " + user.getId();

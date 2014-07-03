@@ -44,7 +44,7 @@ public class UserService {
 		
 		ApnsService service =
 			    APNS.newService()
-			    .withCert(Paths.LOCAL_FILES
+			    .withCert(Paths.JELASTIC_FILES
 		       		+ File.separator + "push-notifications"
 		        		+ File.separator + "iphone_dev.p12", "bepid105886")
 			    .withSandboxDestination()
